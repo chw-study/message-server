@@ -9,7 +9,7 @@
             [environ.core :refer [env]]))
 
 (defn test-query [db-map]
-  (j/query db-map ["SELECT * FROM test;"]))
+  (j/query db-map ["SELECT * FROM New_Report_Master;"]))
 
 (defn app-routes [db-map]
   (routes
@@ -26,9 +26,8 @@
       (wrap-json-body {:keywords? true})
       (wrap-defaults api-defaults)))
 
-
 (def db-map {:subprotocol "mysql"
-             :subname (env :healthworkers-msg-db-url)
+             :subname (str "//mysql:" (env :healthworkers-msg-db-port) "/" (env :healthworkers-msg-db-name))
              :user (env :healthworkers-msg-db-user)
              :password (env :healthworkers-msg-db-password)})
 
